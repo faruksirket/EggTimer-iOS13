@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     let eggTimes = ["Soft": 5, "Medium": 7,"Hard": 12]
+    var seconds = 0
+    var timer = Timer()
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -18,18 +20,19 @@ class ViewController: UIViewController {
 
 
     @IBAction func keyPressed(_ sender: UIButton) {
+        timer.invalidate()
         let hardness = sender.currentTitle!
-        print(eggTimes[hardness] ?? "Soft")
-        var seconds = self.eggTimes[hardness]! * 60
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
-                if seconds > 0 {
-                    print ("\(seconds) seconds")
-                   seconds -= 1
+        seconds = self.eggTimes[hardness]! * 60
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+            if self.seconds > 0 {
+                print ("\(self.seconds) seconds")
+                self.seconds -= 1
                 } else {
                     Timer.invalidate()
                 }
             }
         
     }
+    
     
 }
