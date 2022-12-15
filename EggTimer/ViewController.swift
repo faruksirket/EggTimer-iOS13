@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let eggTimes = ["Soft": 5, "Medium": 7,"Hard": 12]
+    @IBOutlet var eggTimerLabel: UILabel!
+    let eggTimes = ["Soft": 1, "Medium": 7,"Hard": 12]
     var seconds = 0
     var timer = Timer()
     override func viewDidLoad() {
@@ -27,6 +28,9 @@ class ViewController: UIViewController {
             if self.seconds > 0 {
                 print ("\(self.seconds) seconds")
                 self.seconds -= 1
+                if self.seconds == 0 {
+                    self.eggTimerLabel.text = "Done!"
+                } 
                 } else {
                     Timer.invalidate()
                 }
